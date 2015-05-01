@@ -1,5 +1,4 @@
 import java.util.*;
-import java.io.*;
 
 public class WordTree{
 
@@ -10,12 +9,12 @@ public class WordTree{
   }
 
   public void add(String word){
-    root = add(word, root.getLetter(word.charAt(0)));
+    root = add(word, root.get(word.charAt(0)));
   }
 
   public WordTreeNode add(String word, WordTreeNode curr){
     char c = word.charAt(0);
-    if (c == '\u0000'){
+    if (c == null){
       curr.setWord(true);
       return curr;
     }
@@ -32,27 +31,23 @@ public class WordTree{
 
   public String getWord(WordTreeNode curr){
     if (curr.isWord())
-	return curr.getData() + " ";
-    return "";
+      return curr.getData()
   }
 
   private static void setFile(String file){
-      try{
-	  BufferedReader br = new BufferedReader(new FileReader(file));
-	  String init = br.readLine();
-	  while(init != null){ 
-	      
-	      return;
-	      
+
+    BufferedReader br = new BufferedReader(new FileReader(file));
+    String init = br.readline();
+    while(init != 
+
+
+
 	  }
-      }
-      catch(IOException e){{}
-      }
-  }
+
     public static void main(String[] args){
-	
+
     }
-    
+
 
 
   }
