@@ -57,6 +57,7 @@ public class WordTree{
 	    while(init != null){ 
 		wt.add(init);
 		init = br.readLine();
+		System.out.println(init);
 	    }
 	}
 	catch(IOException e){{}
