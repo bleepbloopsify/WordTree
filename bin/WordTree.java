@@ -10,31 +10,40 @@ public class WordTree{
     }
 
     public void add(String word){
-	root = add(word, root);
+	if(word.length() == 1){
+	    if(!root.hasLetter(word.charAt(0)))
+		root.setLetter(word.charAt(0));
+	    return;
+	}
+	char car = word.charAt(0);
+	String cdr = word.substring(1,word.length());
+	if (root.getLetter(car) == null)
+	    root.setLetter(car);
+	root.setLetter(car, add(cdr,root.getLetter(car)));
     }
+
+    
 
     public WordTreeNode add(String word, WordTreeNode curr){
-	char c = 0;
-
 	if (word.length() == 0){
 	    curr.setWord(true);
-	    return curr;
 	}
 	else{
-	    c = word.charAt(0);
-	
-	    if (curr.getLetter(c) == null)
-		curr.setLetter(c, new WordTreeNode(c));
-	    curr.setLetter(c, add(word.substring(1,word.length()), curr.getLetter(c)));
-	    return curr;
+	    char car = word.charAt(0);
+	    String cdr = word.substring(1,word.length());
+	    if (curr.getLetter(car) == null)
+		curr.setLetter(car);
+	    curr.setLetter(car, add(cdr, curr.getLetter(car)));
 	}
+	return curr;
     }
+
     public String getWord(){
 	return getWord(root);
     }
     
     public String getWord(WordTreeNode curr){
-	if (curr.isLast() || Math.random() * 100 > 90 && curr.isWord())
+	if (curr.isLast() || Math.random() * 100 > 97 && curr.isWord())
 	    return curr.getData() + " ";
 	return curr.getData() + getWord(curr.getOneLetter());
     }
@@ -50,14 +59,14 @@ public class WordTree{
     }
     
     public static void main(String[] args){
+	System.out.println((int)'a' + " " + (int)'z');
 	WordTree wt = new WordTree();
 	try{
-	    BufferedReader br = new BufferedReader(new FileReader("../file/words_test.txt"));
+	    BufferedReader br = new BufferedReader(new FileReader("../file/words_full.txt"));
 	    String init = br.readLine();
 	    while(init != null){ 
 		wt.add(init);
 		init = br.readLine();
-		System.out.println(init);
 	    }
 	}
 	catch(IOException e){{}
