@@ -25,6 +25,14 @@ public class WordTreeNode{
 	return data + "";
     }
 
+    public ArrayList<WordTreeNode> getAll(){
+	ArrayList<WordTreeNode> filled = new ArrayList<WordTreeNode>();
+	for(int i = 0; i < letters.length; i++)
+	    if(letters[i] != null)
+		filled.add(letters[i]);
+	return filled;
+    }
+
     public WordTreeNode getOneLetter(){
 	ArrayList<WordTreeNode> filled = new ArrayList<WordTreeNode>();
 	for(int i = 0; i < letters.length; i++)

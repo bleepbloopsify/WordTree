@@ -57,9 +57,43 @@ public class WordTree{
 	if( curr.isLast()) return;
 	inOrder(curr.getOneLetter());
     }
+
+    public String Long(){
+	return Long(root);
+    }
+
+    public String Long(WordTreeNode curr){
+	if(curr.isLast())
+	    return curr.getData() + "";
+	ArrayList<WordTreeNode> filled = curr.getAll();
+	String longest = "";
+	for(int i = 0; i < filled.size(); i++){
+	    String temp = Long(filled.get(i));
+	    if(longest.length() < (curr.getData() + temp).length())
+		longest = curr.getData() + temp;
+	}
+	return longest;
+    }
+
+    public ArrayList<String> prefix(String p){
+	ArrayList<String> ans = new ArrayList<String>();
+    }
     
+    public void prefix(String p, WordTreeNode e, ArrayList<String> al){
+	p += e.getData();
+	if(e.isWord())
+	    al.add(p);
+	if(e.isLast())
+	    return;
+	ArrayList<WordTreeNode> filled = e.getAll();
+	for(int i = 0; i < filled.size(); i++)
+	    prefix(p, filled.get(i), al);
+    }
+
+    
+
+
     public static void main(String[] args){
-	System.out.println((int)'a' + " " + (int)'z');
 	WordTree wt = new WordTree();
 	try{
 	    BufferedReader br = new BufferedReader(new FileReader("../file/words_full.txt"));
@@ -78,7 +112,8 @@ public class WordTree{
 	System.out.println(wt.getWord());
 	System.out.println(wt.getWord());
 	System.out.println(wt.getWord());
-	wt.inOrder();
+
+	System.out.println(wt.Long());
     }
     
 }
