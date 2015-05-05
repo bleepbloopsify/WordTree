@@ -77,6 +77,8 @@ public class WordTree{
 
     public ArrayList<String> prefix(String p){
 	ArrayList<String> ans = new ArrayList<String>();
+	prefix(p.substring(0,p.length() - 1),root.get(p),ans);
+	return ans;
     }
     
     public void prefix(String p, WordTreeNode e, ArrayList<String> al){
@@ -114,6 +116,7 @@ public class WordTree{
 	System.out.println(wt.getWord());
 
 	System.out.println(wt.Long());
+	System.out.println(wt.prefix("pre"));
     }
     
 }

@@ -25,6 +25,13 @@ public class WordTreeNode{
 	return data + "";
     }
 
+    public WordTreeNode get(String s){
+	char c = s.charAt(0);
+	if (s.length() == 1)
+	    return getLetter(c);
+	return letters[(int)c - 97].get(s.substring(1,s.length()));
+    }
+
     public ArrayList<WordTreeNode> getAll(){
 	ArrayList<WordTreeNode> filled = new ArrayList<WordTreeNode>();
 	for(int i = 0; i < letters.length; i++)
