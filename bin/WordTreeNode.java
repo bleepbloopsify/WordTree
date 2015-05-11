@@ -27,6 +27,8 @@ public class WordTreeNode{
 
  public WordTreeNode get(String s){
    char c = s.charAt(0);
+   if(letters[(int)c - 97] == null)
+     return null;
    if (s.length() == 1)
      return getLetter(c);
    return letters[(int)c - 97].get(s.substring(1,s.length()));
@@ -41,19 +43,11 @@ public class WordTreeNode{
   }
 
   public WordTreeNode getOneLetter(){
-   ArrayList<WordTreeNode> filled = new ArrayList<WordTreeNode>();
-   for(int i = 0; i < letters.length; i++)
-     if(letters[i] != null)
-      filled.add(letters[i]);
-    return filled.get( (int)(Math.random() * filled.size()));
+    return getAll().get( (int)(Math.random() * getAll().size()));
   }
 
   public boolean isLast(){
-   ArrayList<WordTreeNode> filled = new ArrayList<WordTreeNode>();
-   for(int i = 0; i < letters.length; i++)
-     if(letters[i] != null)
-      filled.add(letters[i]);
-    return filled.size() == 0;
+    return getAll().size() == 0;
   }
 
   public boolean isWord(){
